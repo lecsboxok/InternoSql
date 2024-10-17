@@ -5,12 +5,13 @@ export function usarBD() {
 
     async function create(dados) {
         const regras = await bd.prepareAsync(
-            "INSERT INTO produtos (nome, quantidade) VALUES ($nome, $quantidade)"
+            "INSERT INTO produtos (nome, quantidade, autor) VALUES ($nome, $quantidade, $autor)"
         );
 
         try {
             const result = await regras.executeAsync({
                 $nome: dados.nome,
+                $autor: dados.autor,
                 $quantidade: dados.quantidade,
             });
 
@@ -44,13 +45,14 @@ export function usarBD() {
 
     async function update(dados) {
         const regras = await bd.prepareAsync(
-            "UPDATE produtos SET nome = $nome, quantidade = $quantidade WHERE id = $id"
+            "UPDATE produtos SET nome = $nome, quantidade = $quantidade, autor = $autor WHERE id = $id"
         );
 
         try {
             await regras.executeAsync({
                 $id: dados.id,
                 $nome: dados.nome,
+                $autor: dados.autor,
                 $quantidade: dados.quantidade,
             });
         } catch (error) {

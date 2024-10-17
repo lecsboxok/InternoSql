@@ -3,7 +3,8 @@ export async function IniciarBD(bd) {
       CREATE TABLE IF NOT EXISTS produtos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
-        quantidade INTEGER NOT NULL
+        quantidade INTEGER NOT NULL,
+        autor TEXT NOT NULL
       );
     `);
   }
